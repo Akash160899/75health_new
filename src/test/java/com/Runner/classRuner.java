@@ -1259,44 +1259,40 @@ public class classRuner extends Base_Class {
 					visbility(driver, ljv, 60);
 					ljv.sendKeys("test");
 					sleep(2000);
-					List<WebElement> prbdrp = driver
-							.findElements(By.xpath("//div[@id='ProblemsKpop2']/div[2]/ul/li/a/div/span"));
-					for (WebElement web : prbdrp) {
+					while (true) {
+						try {
+							List<WebElement> prbdrp = driver
+									.findElements(By.xpath("//div[@id='ProblemsKpop2']/div[2]/ul/li/a/div/span"));
+							for (WebElement web : prbdrp) {
 
-						if (web.getText().trim().equals("Malignant neoplasm of testis")) {
-							visbility(driver, web, 60);
-							web.click();
+								if (web.getText().trim().equals("Malignant neoplasm of testis")) {
+									visbility(driver, web, 60);
+									web.click();
+
+									WebElement gg1 = driver.findElement(By.xpath("//button[@id='btnSaveAdd']"));
+									visbility(driver, gg1, 60);
+
+									javascriptclick(gg1);
+									sleep(3000);
+									List<WebElement> a56 = driver
+											.findElements(By.xpath("//div[@id='saveadd-btn']/ul/li"));
+									for (WebElement w : a56) {
+										if (w.getText().trim().equals("Save")) {
+											visbility(driver, w, 60);
+											w.click();
+											break;
+										}
+
+									}
+									break;
+								}
+
+							}
 							break;
+						} catch (Exception e) {
+
 						}
-
 					}
-
-					/*
-					 * WebElement azn =
-					 * driver.findElement(By.xpath("//div[text()='Malignant neoplasm of testis']"));
-					 * implicitWait(20, TimeUnit.SECONDS); actions("click", azn);
-					 */
-
-					WebElement gg1 = driver.findElement(By.xpath("//button[@id='btnSaveAdd']"));
-					visbility(driver, gg1, 60);
-
-					javascriptclick(gg1);
-					sleep(3000);
-					List<WebElement> a56 = driver.findElements(By.xpath("//div[@id='saveadd-btn']/ul/li"));
-					for (WebElement w : a56) {
-						if (w.getText().trim().equals("Save")) {
-							visbility(driver, w, 60);
-							w.click();
-							break;
-						}
-
-					}
-
-					/*
-					 * WebElement del = driver.findElement(By.xpath(
-					 * "//div[@id='ProblemsKpop2']/div[1]/div[2]/span[1]"));
-					 * js.executeScript("arguments[0].click();", del);
-					 */
 					sleep(3000);
 
 				} else if (tagnames.equals("symptom")) {
@@ -3640,15 +3636,7 @@ public class classRuner extends Base_Class {
 				actions("click", addfrm);
 
 				break;
-			} /*
-				 * else {
-				 * 
-				 * WebElement addfrm =
-				 * driver.findElement(By.xpath("//div[@id='FormsKpop2']/div[1]/span"));
-				 * visbility(driver, addfrm, 60); actions("click", addfrm);
-				 * 
-				 * break; }
-				 */
+			}
 
 		}
 
@@ -3888,12 +3876,11 @@ public class classRuner extends Base_Class {
 
 	}
 
-	/*
-	 * @AfterClass private void closeDriver() {
-	 * 
-	 * quite();
-	 * 
-	 * }
-	 */
+	@AfterClass
+	private void closeDriver() {
+
+		quite();
+
+	}
 
 }

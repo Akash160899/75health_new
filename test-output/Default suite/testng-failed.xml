@@ -5,6 +5,7 @@
     <classes>
       <class name="com.Runner.Trial_acc">
         <methods>
+          <include name="doctorcr"/>
           <include name="scenario1"/>
           <include name="browser"/>
         </methods>
